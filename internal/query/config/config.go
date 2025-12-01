@@ -30,6 +30,8 @@ type Config struct {
 	lazyTx bool
 
 	trace *trace.Query
+
+	unsafeStreamResult bool
 }
 
 func New(opts ...Option) *Config {
@@ -96,4 +98,10 @@ func (c *Config) SessionIdleTimeToLive() time.Duration {
 
 func (c *Config) LazyTx() bool {
 	return c.lazyTx
+}
+
+func WithUnsafeStreamResult(unsafe bool) Option {
+    return func(c *Config) {
+        c.unsafeStreamResult = unsafe
+    }
 }
